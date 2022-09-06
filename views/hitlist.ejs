@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitlist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+        integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body id = 'hitlist'>
+    <section class='hitlist'>
+        <h1>HitList2.0</h1>
+        <ul class = 'userHitlist'>
+
+            <% items.forEach( el=> { %>
+                <div class="container login-container">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="divider"></div>
+                            <div class="section">
+                                <li class='hitListItem' data-id='<%=el._id%>'>
+                                    <!-- < -->
+                                    
+                                    <a href="/hitlist/id/<%= el._id %>/details/<%= user._id %>" class = 'button'>
+                                        <%= el.name %>
+                                    </a>
+                                    <a href="/hitlist/details/:id" class='button'>View</a>
+                                    <span class='del button'> Delete </span>
+                           
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </ul>
+
+        <h4 class="user-left">
+            <%= user.userName %> has <span class="left"><%= left %></span>  people on their hitlist left to apply to.
+        </h4>
+
+    </section>
+
+    <
+    <form action="/hitlist/createHitlist" method='POST'>
+        <input type="text" placeholder="Enter Contact's Name" name='name'>
+        <input type="text" placeholder="Enter Company URL" name='url'>
+        <input type="text" placeholder="Enter Position" name='position'>
+        <input type="text" placeholder="Enter Company Name" name='company'> <!-- have this twice in schema -->
+        <input type="email" placeholder="Enter Contact's email" name='email'>
+        <input type="text" placeholder="Enter Type of Position" name='typeOfPosition'>
+        <!-- <input type="date" placeholder="Date Added" name='createdAt'> -->
+        <!--Don't need this, backend code adds this automatically once it posts to the database-->
+        <input type="text" placeholder="Comments" name='comments'>
+        <input type="submit" class='button'>
+    </form>
+
+    <div>
+
+
+
+        <a href="/logout" class='button'>Logout</a>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+
+</html>
